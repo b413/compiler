@@ -1,0 +1,9 @@
+struct Positon
+{
+    float x,y;
+    int x;
+};
+
+int main()
+{
+}

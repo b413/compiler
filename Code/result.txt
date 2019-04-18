@@ -1,0 +1,2 @@
+./parser ../Test/test.cmm
+Makefile:37: recipe for target 'test' failed
