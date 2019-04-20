@@ -20,7 +20,7 @@ int main(int argc,char** argv){
 //	if(ISOK==true && ROOT!=NULL)
 //        Traverse(ROOT,0);
 	createTable();
-    printSymTable();
+    //printSymTable();
     ROOT=NULL;
     ISOK=true;
     return 0;

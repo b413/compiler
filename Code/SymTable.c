@@ -28,6 +28,7 @@ struct SymDesc* newDesc(char* sname, char* tname, int type, int lineno, struct T
 	d->lineno=lineno;
 	d->node=tnode;
 	d->retTypeIndex=rType;
+	d->funcIndex = -1;
 	d->defined=false;
     //LGY_417
 	d->type=NULL;
@@ -43,6 +44,7 @@ struct SymDesc* newEmptyDesc()
 	d->lineno=-1;
 	d->node=NULL;
 	d->retTypeIndex=-1;
+	d->funcIndex = -1;
 	d->defined=false;
     //LGY_417
     d->type=NULL;
@@ -67,6 +69,25 @@ int createDesc(struct SymDesc* desc)
 	return -1;
 }
 
+bool streq(char* str1, char* str2)
+{
+	if(str1==0 && str2==0)
+		return true;
+	if(str1==0 || str2==0)
+		return false;
+	bool eq = true;
+	int i=0;
+	while(true)
+	{
+		if(str1[i]!=str2[i])
+			return false;
+		if(str1[i]=='\0')
+			return true;
+		i++;
+	}
+	return false;
+}
+
 int getDesc(char* symName,bool function)
 {
 	int hash = Hash(symName);
@@ -81,20 +102,9 @@ int getDesc(char* symName,bool function)
 				continue;
 			if(SymTable[hash]->Type!=T_FUNC && function)
 				continue;
-			int j=0;
 			if(SymTable[hash]->SymName==NULL)
 				continue;
-			bool eq=true;
-			while(SymTable[hash]->SymName!=NULL &&  SymTable[hash]->SymName!=NULL && SymTable[hash]->SymName[j]!='\0')
-			{
-				if(symName[j]!=SymTable[hash]->SymName[j])
-				{
-					eq=false;
-					break;
-				}
-				j=j+1;
-			}
-			if(eq==true)
+			if(streq(symName,SymTable[hash]->SymName))
 				return hash;
 		}
 	}

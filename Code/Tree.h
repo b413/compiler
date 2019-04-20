@@ -18,11 +18,32 @@ enum{
 	T_DecList,T_Dec,T_Exp,T_Args,
 };
 */
+//LGY_417
+//typedef struct Type_* Type;
+typedef struct FieldList_* FieldList;
+
+struct Type_{
+    enum{BASIC,ARRAY,STRUCTURE,FUNCTION}kind;
+    char* name; //the struct name or INT or FLOAT
+    union{
+        int basic;
+        struct{struct Type_* elem;int size;}array;
+        FieldList structure;
+        struct{struct Type_* return_value;FieldList params;}function;
+    }u;
+};
+
+struct FieldList_{
+    char* name;
+    struct Type_* type;
+    FieldList tail;
+};
 struct Tnode
 {
 	int Type;
 	int SymIndex;
 	int Dimension;
+	int StructIndex;
 	int lineno;
 	union{
 			int val_int;
@@ -32,6 +53,7 @@ struct Tnode
 	struct Tnode* Parent;
 	struct Tnode* FirstChild;
 	struct Tnode* NextSibling;
+    struct Type_* type;
 };
 extern char* TypeName[];
 extern struct Tnode *ROOT;
@@ -41,23 +63,4 @@ extern void Traverse(struct Tnode* root,int depth);
 extern bool printTree();
 extern struct Tnode* ROOT;
 
-//LGY_417
-typedef struct Type_* Type;
-typedef struct FieldList_* FieldList;
-
-struct Type_{
-    enum{BASIC,ARRAY,STRUCTURE}kind;
-    char* name; //the struct name or INT or FLOAT
-    union{
-        int basic;
-        struct{Type elem;int size;}array;
-        FieldList structure;
-    }u;
-};
-
-struct FieldList_{
-    char* name;
-    Type type;
-    FieldList tail;
-};
 #endif

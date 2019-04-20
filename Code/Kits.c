@@ -40,6 +40,19 @@ char* int2str(int val, int* retlen)
 	return ret;
 }
 
+char* mstrdup(char* str)
+{
+	if(str==NULL)
+		printf("strdup Error: Null Pointer\n");
+	int len=0;
+	for(;str[len]!='\0';len++);
+	char* ret = (char*)malloc(len+1);
+	for(int i=0;i<len;i++)
+		ret[i]=str[i];
+	ret[len]='\0';
+	return ret;
+}
+
 int hex2int(char* str, int len)
 {
 	int val = 0;

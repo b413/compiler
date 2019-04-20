@@ -34,6 +34,7 @@ extern char* curFuncName;
 
 extern int getNumType(char* str, int* type);
 extern char* int2str(int val, int* len);
+extern char* mstrdup(char* str);
 
 /*output format*/
 extern void ShowError(int type, int lineno);

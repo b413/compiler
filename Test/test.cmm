@@ -1,9 +1,0 @@
-int a[10];
-struct A{
-    int b;
-    int c;
-};
-struct A d[10];
-struct A e;
-int f;
-int g[10][12];

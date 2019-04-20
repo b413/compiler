@@ -103,7 +103,7 @@ WHILE "while"
             return NOT;
         }
 {TYPE}  {//printf("TYPE\n");
-            yylval.type_char_pointer=strdup(yytext);
+            yylval.type_char_pointer=mstrdup(yytext);
             return TYPE;
         }
 {LP}    {//printf("LP\n");
@@ -140,17 +140,17 @@ WHILE "while"
             return WHILE;
         }
 {ID}    {//printf("ID\n");
-            yylval.type_char_pointer=strdup(yytext);
+            yylval.type_char_pointer=mstrdup(yytext);
             return ID;
         }
 {INT}   {//printf("INT\n");
             //yylval.type_int=atoi(yytext);
-            yylval.type_char_pointer=strdup(yytext);
+            yylval.type_char_pointer=mstrdup(yytext);
             return INT;
         }
 {FLOAT} {//printf("FLOAT\n");
             //yylval.type_float=atof(yytext);
-            yylval.type_char_pointer=strdup(yytext);
+            yylval.type_char_pointer=mstrdup(yytext);
             return FLOAT;
         }
 <<EOF>> {return 0;}
@@ -163,7 +163,7 @@ WHILE "while"
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
         /*LGY_0323*/
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return INT;
 		}
 {INT_HEX_ERROR2} {
@@ -172,7 +172,7 @@ WHILE "while"
         sprintf(desc,"cannot define float in hexadecimal format \'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return INT;
 		}
 {INT_OCT_ERROR} {
@@ -181,7 +181,7 @@ WHILE "while"
         sprintf(desc,"unrecognized octal character, please use 0-7 \'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return INT;
 		}
 {INT_DEC_ERROR} {
@@ -190,7 +190,7 @@ WHILE "while"
         sprintf(desc,"unrecognized character, please use digital characters \'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return INT;
 		}
 {FLOAT_ERROR1} {
@@ -199,7 +199,7 @@ WHILE "while"
         sprintf(desc,"too many decimal points in number \'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return FLOAT;
 		}
 {FLOAT_ERROR2} {
@@ -208,7 +208,7 @@ WHILE "while"
         sprintf(desc,"there must be at least one number after dot in float\'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return FLOAT;
 		}
 {FLOAT_ERROR3} {
@@ -217,7 +217,7 @@ WHILE "while"
         sprintf(desc,"there must be at least one number before dot in float\'%s\'",yytext);
 		ShowError(T_ERROR_A,yylineno);
 		printf("%s\n",desc);
-        yylval.type_char_pointer=strdup(yytext);
+        yylval.type_char_pointer=mstrdup(yytext);
 		return FLOAT;
 		}
 

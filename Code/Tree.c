@@ -46,6 +46,7 @@ Tnode* Reduction(int Type, char* Desc, int lineno, int n, ...)
 	node->Type = Type;
 	node->SymIndex = -1;
 	node->Dimension=0;
+	node->StructIndex = -1;
 	node->lineno = lineno;
 	int type = 0;
 	switch(Type)
